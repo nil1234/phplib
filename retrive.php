@@ -1,12 +1,20 @@
 <?php
-	$severname="127.0.0.1";
-	$username = "root";
-	$password = "";
-	$dbname="cruddatabase";
+    require_once 'db_config.php';
 
-	$conn = mysql_connect($severname,$username,$password,$dbname);
-	if(!$conn){
-		die("Connection failed: " .mysql_connect_error())
-	}
-	echo "Connected successfully";
->
+
+    $sql = "SELECT * FROM members "; //WHERE ID='3'
+    $result = $conn->query($sql);
+    //var_dump($result);
+    $data = [];
+    while($row = $result->fetch_assoc()) {
+        //var_dump($row);
+        //echo $row['id'].":".$row['fname'].":".$row['lname'].":".$row['contact']."<br>";
+        $output ['data'][]=array($row['id'],$row['fname'],$row['lname'],$row['contact']);
+    }
+    //echo "<br>";
+    //var_dump($data);
+    //echo json_encode($output);
+    $conn->close();
+
+?>
+

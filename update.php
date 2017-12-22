@@ -3,14 +3,14 @@
 	echo	$_POST['fname']."<br>";
 	echo	$_POST['lname']."<br>";
 	echo	$_POST['contact']."<br>";*/
-	$id = $_POST['id'];
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$contact = $_POST['contact'];
+	$id = $_POST['hid'];
+	$fname = $_POST['efname'];
+	$lname = $_POST['elname'];
+	$contact = $_POST['econtact'];
 
-	$sql ="INSERT INTO members (id, fname, lname, contact) VALUE ($id, '$fname', '$lname', '$contact' )" ;
+	$sql ="UPDATE INTO members SET fname='$fname', lname='$lname', contact='$contact' WHERE id=$id ";
 
-	//echo  $sql;
+	echo  $sql;
 	require_once 'db_config.php';
 	$result=$conn->query($sql);
 	if($result==TRUE){
